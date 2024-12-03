@@ -4,27 +4,27 @@ set -e  # Detener la ejecución si ocurre un error
 
 # Eliminar ngrok existente si está instalado
 echo "Removing existing ngrok installation (if any)..."
-rm -f "$PREFIX/bin/ngrok"
-rm -rf "$PREFIX/share/ngrok"
+rm -f "$HOME/.local/bin/ngrok"
+rm -rf "$HOME/.local/share/ngrok"
 
 # Crear directorios necesarios
 echo "Setting up directories..."
-mkdir -p "$PREFIX/share/ngrok"
+mkdir -p "$HOME/.local/share/ngrok"
 
 # Copiar archivos necesarios
 echo "Copying files..."
-cp get-ngrok.sh "$PREFIX/share/ngrok/"
-cp ngrok "$PREFIX/bin/"
+cp get-ngrok.sh "$HOME/.local/share/ngrok/"
+mv ngrok "$HOME/.local/bin/"  # Mover binario a un directorio en PATH
 
 # Actualizar y limpiar paquetes
 echo "Updating system packages..."
-apt update && apt upgrade -y
-apt install -y proot wget resolv-conf
-apt clean && apt autoremove -y
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y proot wget
+sudo apt clean && sudo apt autoremove -y
 
 # Ejecutar el script de instalación de ngrok
 echo "Running ngrok installation script..."
-cd "$PREFIX/share/ngrok"
+cd "$HOME/.local/share/ngrok"
 bash get-ngrok.sh
 
 # Mensaje de éxito
