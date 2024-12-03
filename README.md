@@ -4,6 +4,10 @@ This project provides a simple script to install **Ngrok** on Linux-based system
 
 ![Captura](ngrok-session.jpg)
 
+<a href="https://ko-fi.com/P5P013UUGZ">
+    <img src="https://github.com/nuntius-dev/badips/raw/main/kofi.png" alt="comprar cafe" width="150" />
+</a>
+
 ## Features
 - Automatically detects your system architecture.
 - Downloads the appropriate version of **Ngrok**.
