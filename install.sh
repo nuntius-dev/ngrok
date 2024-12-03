@@ -9,12 +9,22 @@ rm -rf "$HOME/.local/share/ngrok"
 
 # Crear directorios necesarios
 echo "Setting up directories..."
+mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.local/share/ngrok"
 
 # Copiar archivos necesarios
 echo "Copying files..."
 cp get-ngrok.sh "$HOME/.local/share/ngrok/"
 mv ngrok "$HOME/.local/bin/"  # Mover binario a un directorio en PATH
+
+# Asignar permisos de ejecución al binario
+chmod +x "$HOME/.local/bin/ngrok"
+
+# Asegurar que $HOME/.local/bin esté en el PATH
+if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Actualizar y limpiar paquetes
 echo "Updating system packages..."
